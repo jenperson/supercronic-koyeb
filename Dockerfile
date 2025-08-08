@@ -22,4 +22,4 @@ COPY script.sh /app/script.sh
 RUN chmod +x /app/script.sh
 
 # Command to run supercronic with our crontab
-CMD ["supercronic", "/app/crontab"]
+CMD ["supercronic", "-debug", "/app/crontab"]
