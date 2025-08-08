@@ -1,27 +1,23 @@
 FROM alpine:3.20
-ENV FORCE_REBUILD=2025-08-08-1
 
-
-# Install curl for health checks/logging and bash for scripting
 RUN apk add --no-cache bash curl
 
-# Download Supercronic
-ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/latest/download/supercronic-linux-amd64 \
-    SUPERCRONIC=supercronic-linux-amd64
+# Install Supercronic
+RUN curl -fsSLO "https://github.com/aptible/supercronic/releases/latest/download/supercronic-linux-amd64" \
+    && chmod +x supercronic-linux-amd64 \
+    && mv supercronic-linux-amd64 /usr/bin/supercronic \
+    && /usr/bin/supercronic -version
 
-RUN curl -fsSLO "$SUPERCRONIC_URL" \
-    && chmod +x "$SUPERCRONIC" \
-    && mv "$SUPERCRONIC" /usr/local/bin/supercronic
-
-# Set work directory
 WORKDIR /app
 
-# Copy files
-COPY crontab /app/crontab
-COPY script.sh /app/script.sh
+# Copy crontab to a fixed path
+COPY crontab /etc/crontab
+RUN chmod 0644 /etc/crontab
 
-# Ensure script is executable
+# Copy script
+COPY script.sh /app/script.sh
 RUN chmod +x /app/script.sh
 
-# Command to run supercronic with our crontab
-CMD ["supercronic", "-debug", "/app/crontab"]
+# Use ENTRYPOINT + CMD
+ENTRYPOINT ["/usr/bin/supercronic"]
+CMD ["/etc/crontab"]
