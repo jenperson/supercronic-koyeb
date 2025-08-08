@@ -1,4 +1,6 @@
 FROM alpine:3.20
+ENV FORCE_REBUILD=2025-08-08-1
+
 
 # Install curl for health checks/logging and bash for scripting
 RUN apk add --no-cache bash curl
@@ -9,9 +11,7 @@ ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/latest/downl
 
 RUN curl -fsSLO "$SUPERCRONIC_URL" \
     && chmod +x "$SUPERCRONIC" \
-    && mv "$SUPERCRONIC" /usr/local/bin/supercronic \
-    && supercronic -version  # <-- Adding temporarily to confirm it works at build time
-
+    && mv "$SUPERCRONIC" /usr/local/bin/supercronic
 
 # Set work directory
 WORKDIR /app
