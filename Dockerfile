@@ -10,6 +10,8 @@ ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/latest/downl
 RUN curl -fsSLO "$SUPERCRONIC_URL" \
     && chmod +x "$SUPERCRONIC" \
     && mv "$SUPERCRONIC" /usr/local/bin/supercronic
+    && supercronic -version  # <-- Adding temporarily to confirm it works at build time
+
 
 # Set work directory
 WORKDIR /app
