@@ -78,7 +78,7 @@ top_stories = load_top_stories_concurrent()
 
 message = client.messages.create(
     to=f'whatsapp:{whatsapp_to}',
-    from_='whatsapp:{whatsapp_from}',
+    from_=f'whatsapp:{whatsapp_from}',
     body=f'{top_stories}'
 )
 
