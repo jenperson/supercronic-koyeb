@@ -18,7 +18,7 @@ class HackerNews:
             data = response.json() 
             return data
         except requests.exceptions.RequestException as e:
-            print('Error calling Top Stores API:', e)
+            print(f'Error calling Top Stores API: {e}')
 
     # Get story information for a given story ID
     def get_story_by_id(self, item_id: str):
@@ -28,7 +28,7 @@ class HackerNews:
             data = response.json()
             return data
         except requests.exceptions.RequestException as e:
-            print('Error calling Item ID API:', e)
+            print(f'Error calling Item ID API: {e}')
 
     # Build array of top stories
     def load_top_stories_concurrent(self):
