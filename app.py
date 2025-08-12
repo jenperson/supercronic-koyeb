@@ -23,7 +23,7 @@ def get_top_stories():
         response = requests.get(f'{hn_base_url}topstories{endpoint_suffix}/?limitToFirst={10}&orderBy="{order_by_value}"')
         response.raise_for_status()
         data = response.json() 
-        print('Get Top Stories API Response:', data)
+        # print('Get Top Stories API Response:', data)
         return data
     except requests.exceptions.RequestException as e:
         print('Error calling Top Stores API:', e)
@@ -34,7 +34,7 @@ def get_story_by_id(item_id: str):
         response = requests.get(f'{hn_base_url}item/{item_id}{endpoint_suffix}')
         response.raise_for_status()
         data = response.json()
-        print('Get Story API Response:', data)
+        # print('Get Story API Response:', data)
         return data
     except requests.exceptions.RequestException as e:
         print('Error calling Item ID API:', e)
@@ -45,7 +45,7 @@ def get_user(user_id: str):
         response = requests.get(f'{hn_base_url}user/{user_id}{endpoint_suffix}')
         response.raise_for_status() 
         data = response.json()
-        print('Get Story API Response:', data)
+        # print('Get Story API Response:', data)
         return data
     except requests.exceptions.RequestException as e:
         print('Error calling Story API:', e)
@@ -76,7 +76,7 @@ def load_top_stories_concurrent():
 
 top_stories = load_top_stories_concurrent()
 top_summary = llm.askNoChat(f'{top_stories}', max_tokens=4000)
-print(top_summary)
+print(f"top summary: {top_summary}")
 
 def send_whatsapp_message_in_chunks(body, chunk_size=3500):
     print(f"Response message from gpt: {body}")
