@@ -4,8 +4,8 @@ from hacker_news import HackerNews
 from llm import GptOpenAi
 
 # Your Account SID and Auth Token from console.twilio.com stored as envars in Koyeb
-account_sid = os.environ.get('TWILLIO_SID')
-auth_token = os.environ.get('TWILLIO_AUTH_TOKEN')
+account_sid = os.environ.get('TWILIO_SID')
+auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
 
 # Your WhatsApp number at which you will receive the messages
 whatsapp_to = os.environ.get('WHATSAPP_TO')
