@@ -38,7 +38,7 @@ class GptOpenAi:
             return None
         
     # Uses the completions function to create a response
-    def askNoChat(self, formatted_input: str, temperature: float = 1.0,  max_tokens: int = 500, role: str = 'user'):
+    def summarize_hn(self, formatted_input: str, temperature: float = 1.0,  max_tokens: int = 500, role: str = 'user'):
         instructions = (
             'You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend.'
             'Include the links to all the stories if present, or just the info from the text if present.' 

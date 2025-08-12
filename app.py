@@ -20,7 +20,7 @@ hacker_news = HackerNews()
 # Get the ten top stories
 top_stories = hacker_news.load_top_stories_concurrent()
 # Have gpt-oss-20b summarize the stories
-top_summary = llm.askNoChat(f'{top_stories}', max_tokens=4000)
+top_summary = llm.summarize_hn(f'{top_stories}', max_tokens=4000)
 
 # Send messages to your WhatsApp number
 def send_whatsapp_message_in_chunks(body, chunk_size=1600):
