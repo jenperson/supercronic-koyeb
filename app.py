@@ -76,7 +76,7 @@ def load_top_stories_concurrent():
 
 top_stories = load_top_stories_concurrent()
 top_summary = llm.askNoChat(f'{top_stories}', max_tokens=4000)
-
+print(top_summary)
 
 def send_whatsapp_message_in_chunks(body, chunk_size=3500):
     print(f"Response message from gpt: {body}")
@@ -97,4 +97,4 @@ def send_whatsapp_message_in_chunks(body, chunk_size=3500):
         print(f"Sent part {i}/{len(parts)} SID:", message.sid)
 
 
-messages = send_whatsapp_message_in_chunks(top_summary)
+# messages = send_whatsapp_message_in_chunks(top_summary)
