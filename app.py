@@ -3,6 +3,7 @@ import os
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from requests.utils import quote
+from llm import GptOpenAi
 
 # Your Account SID and Auth Token from console.twilio.com stored as envars in Koyeb
 account_sid = os.environ.get('TWILLIO_SID')
@@ -10,8 +11,7 @@ auth_token = os.environ.get('TWILLIO_AUTH_TOKEN')
 whatsapp_to = os.environ.get('WHATSAPP_TO')
 whatsapp_from = os.environ.get('WHATSAPP_FROM')
 client = Client(account_sid, auth_token)
-
-client = Client(account_sid, auth_token)
+llm = GptOpenAi()
 
 hn_base_url = 'https://hacker-news.firebaseio.com/v0/'
 endpoint_suffix = '.json'
@@ -75,11 +75,11 @@ def load_top_stories_concurrent():
     return results
 
 top_stories = load_top_stories_concurrent()
-
+top_summary = llm.askNoChat(f'{top_stories}')
 message = client.messages.create(
     to=f'whatsapp:{whatsapp_to}',
     from_=f'whatsapp:{whatsapp_from}',
-    body=f'{top_stories}'
+    body=top_summary
 )
 
 print(message.sid)

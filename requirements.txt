@@ -1,2 +1,5 @@
 twilio
 requests
+dotenv
+openai
+transformers
