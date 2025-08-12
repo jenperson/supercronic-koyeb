@@ -65,12 +65,13 @@ class GptOpenAi:
             )
 
             if response.choices:
-                # print(f"response choices 0: {response.choices[0].text}")
                 chat_response = response.choices[0].text
                 match = re.search(r'final(.*)', chat_response, re.DOTALL)
-                # print(f"pre strip: {match}")
+                # Remove newlines
                 final_result = match.group(1).replace(r'\\n', ' ').replace('\\', '').strip()
-            return match.group(1).replace(r'\\n', ' ').replace('\\', '').strip() if match else None
+                # Remove markdown formatting from URLs
+                final_result = re.sub(r'\[([^\]]+)\]\((https?://[^\)]+)\)', r'\1: \2', final_result)
+                return final_result if final_result else None
         except Exception as e:
             print(f"Request failed: {e}")
             return None
