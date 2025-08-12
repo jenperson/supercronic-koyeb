@@ -7,7 +7,6 @@ RUN apk add --no-cache bash curl \
     && mv supercronic-linux-amd64 /usr/bin/supercronic \
     && /usr/bin/supercronic -version
 
-
 WORKDIR /app
 
 # Copy crontab to a fixed path
