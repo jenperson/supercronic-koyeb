@@ -89,7 +89,7 @@ def send_whatsapp_message_in_chunks(body, chunk_size=3500):
         body = body[split_point:].lstrip()
     parts.append(body)
     for i, part in enumerate(parts, start=1):
-        client.messages.create(
+        message = client.messages.create(
             to=f'whatsapp:{whatsapp_to}',
             from_=f'whatsapp:{whatsapp_from}',
             body=part
@@ -97,6 +97,4 @@ def send_whatsapp_message_in_chunks(body, chunk_size=3500):
         print(f"Sent part {i}/{len(parts)} SID:", message.sid)
 
 
-message = send_whatsapp_message_in_chunks(top_summary)
-
-print(message.sid)
+messages = send_whatsapp_message_in_chunks(top_summary)

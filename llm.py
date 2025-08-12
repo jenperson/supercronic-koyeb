@@ -44,7 +44,6 @@ class GptOpenAi:
         instructions = (
             "You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend."
             "Include the links to all the stories if present, or just the info from the text if present." 
-            "Respond in no more than 500 characters. Skip unnecessary explanation. Only include the final summary in plain text"
         )
         tokenizer = AutoTokenizer.from_pretrained("openai/gpt-oss-20b", trust_remote_code=True)
         """Send a request to the OpenAI API and return the response."""
