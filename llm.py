@@ -41,13 +41,18 @@ class GptOpenAi:
             return None
         
     def askNoChat(self, formatted_input: str, temperature: float = 1.0,  max_tokens: int = 500, role: str = "user"):
+        instructions = (
+            "You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend."
+            "Include the links to all the stories if present, or just the info from the text if present." 
+            "Respond in no more than 500 characters. Skip unnecessary explanation. Only include the final summary in plain text"
+        )
         tokenizer = AutoTokenizer.from_pretrained("openai/gpt-oss-20b", trust_remote_code=True)
         """Send a request to the OpenAI API and return the response."""
         if not isinstance(formatted_input, str):
             formatted_input = formatted_input.to_string()
 
         try:
-            messages=[{"role": "system", "content": "You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend. Include the links to all the stories if present, or just the info from the text if present."},{"role": role, "content": formatted_input}]
+            messages=[{"role": "system", "content": instructions},{"role": role, "content": formatted_input}]
             prompt = tokenizer.apply_chat_template(
                 messages,
                 tokenize=False,
