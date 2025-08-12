@@ -47,7 +47,7 @@ class GptOpenAi:
             formatted_input = formatted_input.to_string()
 
         try:
-            messages=[{"role": "system", "content": "You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend. Include the links to all the stories."},{"role": role, "content": formatted_input}]
+            messages=[{"role": "system", "content": "You are ChatGPT. Given a set of stories, create a summary message explaining the stories as though you were speaking to a friend. Include the links to all the stories if present, or just the info from the text if present."},{"role": role, "content": formatted_input}]
             prompt = tokenizer.apply_chat_template(
                 messages,
                 tokenize=False,

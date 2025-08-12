@@ -75,7 +75,7 @@ def load_top_stories_concurrent():
     return results
 
 top_stories = load_top_stories_concurrent()
-top_summary = llm.askNoChat(f'{top_stories}')
+top_summary = llm.askNoChat(f'{top_stories}', max_tokens=2000)
 message = client.messages.create(
     to=f'whatsapp:{whatsapp_to}',
     from_=f'whatsapp:{whatsapp_from}',
