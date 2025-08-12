@@ -42,7 +42,6 @@ class GptOpenAi:
         
     def askNoChat(self, formatted_input: str, temperature: float = 1.0,  max_tokens: int = 500, role: str = "user"):
         tokenizer = AutoTokenizer.from_pretrained("openai/gpt-oss-20b", trust_remote_code=True)
-        print(tokenizer.chat_template)
         """Send a request to the OpenAI API and return the response."""
         if not isinstance(formatted_input, str):
             formatted_input = formatted_input.to_string()

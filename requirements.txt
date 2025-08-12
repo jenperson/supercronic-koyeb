@@ -3,3 +3,4 @@ requests
 dotenv
 openai
 transformers
+jinja2
