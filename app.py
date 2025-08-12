@@ -75,11 +75,17 @@ def load_top_stories_concurrent():
     return results
 
 top_stories = load_top_stories_concurrent()
-top_summary = llm.askNoChat(f'{top_stories}', max_tokens=2000)
-message = client.messages.create(
-    to=f'whatsapp:{whatsapp_to}',
-    from_=f'whatsapp:{whatsapp_from}',
-    body=top_summary
-)
+top_summary = llm.askNoChat(f'{top_stories}', max_tokens=4000)
+
+
+def send_whatsapp_message_in_chunks(to, body, chunk_size=4000):
+    for i in range(0, len(body), chunk_size):
+        client.messages.create(
+            to=f'whatsapp:{whatsapp_to}',
+            from_=f'whatsapp:{whatsapp_from}',
+            body=body[i:i+chunk_size]
+        )
+
+message = send_whatsapp_message_in_chunks(top_summary)
 
 print(message.sid)

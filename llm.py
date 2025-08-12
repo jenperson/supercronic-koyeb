@@ -65,7 +65,7 @@ class GptOpenAi:
                 chat_response = response.choices[0].text
                 match = re.search(r'final(.*)', chat_response)
                 print(match)
-            return match.group(1).strip() if match else None
+            return match.group(1).replace("\n", "").strip() if match else None
         except Exception as e:
             print(f"Request failed: {e}")
             return None
