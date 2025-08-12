@@ -1,1 +1,5 @@
-*/5 * * * * /app/script.sh
+# Check Hacker News every day at 9:00 am
+0 9 * * * /path/to/script.sh
+
+# Alternatively, enable every 5 minutes for testing
+# */5 * * * * /app/script.sh

@@ -1,0 +1,39 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+
+# Virtual environments
+venv/
+.env/
+.envrc
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Build artifacts
+*.egg-info/
+build/
+dist/
+
+# Logs
+*.log
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+*.tmp
+
+# Local data
+*.db
