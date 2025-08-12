@@ -67,8 +67,10 @@ class GptOpenAi:
             if response.choices:
                 print(response.choices)
                 chat_response = response.choices[0].text
-                match = re.search(r'final(.*)', chat_response)
+                match = re.search(r'final(.*)', chat_response, re.DOTALL)
                 print(match)
+                if match:
+                    print(f"Stripped result: {match.group(1).replace(r'\\n', ' ').replace('\\', '').strip()}")
             return match.group(1).replace("\n", "").strip() if match else None
         except Exception as e:
             print(f"Request failed: {e}")
