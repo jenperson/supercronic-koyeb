@@ -16,7 +16,7 @@ class GptOpenAi:
     """
     def __init__(self, api_url: str = f"{GPT_OSS_20B_API_URL}", model: str = "openai/gpt-oss-20b"):
         self.client = OpenAI(
-            api_key=api_key,
+            api_key=None,
             base_url=api_url,
         )
         self.model = model
