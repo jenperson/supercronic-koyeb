@@ -78,7 +78,7 @@ top_stories = load_top_stories_concurrent()
 top_summary = llm.askNoChat(f'{top_stories}', max_tokens=4000)
 
 
-def send_whatsapp_message_in_chunks(to, body, chunk_size=4000):
+def send_whatsapp_message_in_chunks(body, chunk_size=4000):
     for i in range(0, len(body), chunk_size):
         client.messages.create(
             to=f'whatsapp:{whatsapp_to}',
